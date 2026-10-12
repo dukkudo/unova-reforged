@@ -112,14 +112,13 @@ func _build_player() -> void:
 	player.add_child(shadow)
 
 	add_child(player)
-	player.visual = sprite
-	player.idle_frame = _make_trainer_texture(0)
-	player.walk_frames = [
+	var walk_frames: Array[Texture2D] = [
 		_make_trainer_texture(1),
 		_make_trainer_texture(0),
 		_make_trainer_texture(2),
 		_make_trainer_texture(0),
 	]
+	player.call("configure_visual", sprite, _make_trainer_texture(0), walk_frames)
 
 
 func _build_camera() -> void:
@@ -290,4 +289,3 @@ func _fill_rect(image: Image, rect: Rect2i, color: Color) -> void:
 	for y in range(rect.position.y, rect.position.y + rect.size.y):
 		for x in range(rect.position.x, rect.position.x + rect.size.x):
 			image.set_pixel(x, y, color)
-

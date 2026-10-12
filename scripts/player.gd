@@ -11,6 +11,13 @@ var idle_frame: Texture2D
 var walk_frames: Array[Texture2D] = []
 
 
+func configure_visual(new_visual: Sprite3D, new_idle_frame: Texture2D, new_walk_frames: Array[Texture2D]) -> void:
+	visual = new_visual
+	idle_frame = new_idle_frame
+	walk_frames = new_walk_frames
+	visual.texture = idle_frame
+
+
 func _physics_process(delta: float) -> void:
 	var input_vector := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if Input.is_physical_key_pressed(KEY_A):
