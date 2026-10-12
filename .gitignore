@@ -1,0 +1,12 @@
+# Godot generated project metadata and editor cache
+.godot/
+
+# Godot export/build output
+export/
+build/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
