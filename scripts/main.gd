@@ -103,7 +103,7 @@ func _build_player() -> void:
 func _build_camera() -> void:
 	camera = Camera3D.new()
 	camera.name = "ExplorationCamera"
-	camera.position = Vector3(6.5, 6.5, 6.5)
+	camera.position = Vector3(0.0, 6.5, 8.5)
 	camera.current = true
 	add_child(camera)
 	camera.look_at(player.global_position + Vector3(0.0, 0.45, 0.0), Vector3.UP)
@@ -112,7 +112,7 @@ func _build_camera() -> void:
 func _update_camera(delta: float) -> void:
 	if not camera or not player:
 		return
-	var desired_position := player.global_position + Vector3(6.5, 6.5, 6.5)
+	var desired_position := player.global_position + Vector3(0.0, 6.5, 8.5)
 	camera.global_position = camera.global_position.lerp(desired_position, 1.0 - exp(-6.0 * delta))
 	camera.look_at(player.global_position + Vector3(0.0, 0.45, 0.0), Vector3.UP)
 

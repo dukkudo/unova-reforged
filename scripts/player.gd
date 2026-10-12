@@ -20,16 +20,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_physical_key_pressed(KEY_S):
 		input_vector.y += 1.0
 	input_vector = input_vector.limit_length(1.0)
-	var direction := Vector3(input_vector.x, 0.0, -input_vector.y)
-	var camera := get_viewport().get_camera_3d()
-	if camera:
-		var camera_forward := -camera.global_transform.basis.z
-		var camera_right := camera.global_transform.basis.x
-		camera_forward.y = 0.0
-		camera_right.y = 0.0
-		camera_forward = camera_forward.normalized()
-		camera_right = camera_right.normalized()
-		direction = camera_right * input_vector.x + camera_forward * -input_vector.y
+	var direction := Vector3(input_vector.x, 0.0, input_vector.y)
 
 	if direction.length_squared() > 1.0:
 		direction = direction.normalized()
