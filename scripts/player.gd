@@ -7,6 +7,8 @@ extends CharacterBody3D
 var facing := Vector3.FORWARD
 var walk_time := 0.0
 var visual: Sprite3D
+var idle_frame: Texture2D
+var walk_frames: Array[Texture2D] = []
 
 
 func _physics_process(delta: float) -> void:
@@ -35,10 +37,12 @@ func _physics_process(delta: float) -> void:
 	var moving := Vector2(velocity.x, velocity.z).length_squared() > 0.02
 	if moving:
 		facing = Vector3(velocity.x, 0.0, velocity.z).normalized()
-		walk_time += delta * 9.0
+		walk_time += delta * 8.0
 	else:
 		walk_time = 0.0
 
 	if visual:
-		var bob := sin(walk_time) * 0.025 if moving else 0.0
-		visual.position.y = 0.78 + bob
+		if moving and not walk_frames.is_empty():
+			visual.texture = walk_frames[int(floor(walk_time)) % walk_frames.size()]
+		else:
+			visual.texture = idle_frame
